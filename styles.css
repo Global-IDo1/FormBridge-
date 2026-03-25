@@ -78,6 +78,17 @@ section { padding: 36px 0; }
 
 .trust-bar { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .trust-items { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; text-align: center; font-weight: 600; color: var(--text); }
+.trust-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  margin-right: 8px;
+  font-size: 11px;
+  color: var(--primary);
+}
 
 .stats-grid { display: grid; gap: 16px; margin-bottom: 20px; }
 .stats-grid.three { grid-template-columns: repeat(3,1fr); }
@@ -101,7 +112,7 @@ tbody tr:nth-child(even) { background: #f8fafc; }
 .received { background: #e2e8f0; color: #334155; }
 .assigned { background: #dbeafe; color: #1d4ed8; }
 .in_progress { background: #ffedd5; color: #c2410c; }
-.submitted { background: #e2e8f0; color: #334155; }
+.submitted { background: #ede9fe; color: #6d28d9; }
 .completed { background: #dcfce7; color: #15803d; }
 
 .auth-card { max-width: 420px; margin: 0 auto; }
@@ -156,7 +167,17 @@ input:focus, select:focus, textarea:focus {
 .student-panel { background: #f1f5f9; }
 .data-field { margin-bottom: 12px; }
 .data-field span { display: block; color: #64748b; font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+.data-field div { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .data-field strong { display: block; color: #0f172a; }
+.icon-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  height: 30px;
+  padding: 0 10px;
+  font-weight: 600;
+}
 .doc-thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
 .doc-thumbs > div { padding: 8px 10px; background: #fff; border: 1px solid var(--border); border-radius: 6px; }
 

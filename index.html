@@ -64,10 +64,10 @@
 
       <section class="trust-bar">
         <div class="container trust-items">
-          <div>Verified Operators</div>
-          <div>3-Day Guarantee</div>
-          <div>Secure Data</div>
-          <div>₹49 Only</div>
+          <div><span class="trust-icon">✓</span> Verified Operators</div>
+          <div><span class="trust-icon">24h</span> 3-Day Guarantee</div>
+          <div><span class="trust-icon">SEC</span> Secure Data</div>
+          <div><span class="trust-icon">₹</span> ₹49 Only</div>
         </div>
       </section>
 
@@ -246,10 +246,10 @@
         <div class="container fill-layout">
           <div class="student-panel card">
             <h3>Student Data</h3>
-            <div class="data-field"><span>FULL NAME</span><strong>Rohan Sharma</strong></div>
-            <div class="data-field"><span>MOBILE</span><strong>+91 9876543210</strong></div>
-            <div class="data-field"><span>EMAIL</span><strong>rohan@email.com</strong></div>
-            <div class="data-field"><span>DOB</span><strong>15 Aug 2002</strong></div>
+            <div class="data-field"><span>FULL NAME</span><div><strong>ROHAN SHARMA</strong><button class="icon-btn">Copy</button></div></div>
+            <div class="data-field"><span>MOBILE</span><div><strong>+91 9876543210</strong><button class="icon-btn">Copy</button></div></div>
+            <div class="data-field"><span>EMAIL</span><div><strong>rohan@email.com</strong><button class="icon-btn">Copy</button></div></div>
+            <div class="data-field"><span>DOB</span><div><strong>15/08/2002</strong><button class="icon-btn">Copy</button></div></div>
             <h4>Documents</h4>
             <div class="doc-thumbs">
               <div>Photo.jpg</div>
@@ -263,10 +263,14 @@
               <li>Copy verified student details into form fields.</li>
               <li>Upload required documents and submit.</li>
             </ol>
-            <label>Submission Notes
-              <textarea rows="5" placeholder="Add final remarks"></textarea>
+            <button class="btn btn-secondary full">Open Official Form</button>
+            <label>Application Number
+              <input type="text" placeholder="Enter official application number" />
             </label>
-            <button class="btn btn-primary full">Submit Application</button>
+            <label>Upload Submission Proof
+              <input type="file" />
+            </label>
+            <button class="btn btn-primary full" disabled>Mark as Submitted</button>
           </div>
         </div>
       </section>
