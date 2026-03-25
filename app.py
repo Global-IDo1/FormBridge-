@@ -13,7 +13,7 @@ from urllib.parse import parse_qs, urlparse
 
 DB_PATH = os.environ.get("FORMBRIDGE_DB", "formbridge.db")
 SESSIONS = {}
-UPLOAD_DIR = os.environ.get("FORMBRIDGE_UPLOAD_DIR", "uploads")
+UPLOAD_DIR = os.environ.get("FORMBRIDGE_UPLOAD_DIR", os.environ.get("UPLOAD_DIR", "uploads"))
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
 RESEND_FROM = os.environ.get("RESEND_FROM", "FormBridge <no-reply@formbridge.in>")
 CASHFREE_APP_ID = os.environ.get("CASHFREE_APP_ID", "")
@@ -262,6 +262,13 @@ def ensure_profile_row(email, password, role):
         prof = conn.execute("SELECT id,email,role,is_approved FROM profiles WHERE email=?", (email,)).fetchone()
     conn.close()
     return prof
+
+
+def redirect_response(handler, location):
+    handler.send_response(302)
+    handler.send_header("Location", location)
+    handler.send_header("Content-Length", "0")
+    handler.end_headers()
 
 
 def cashfree_base_url():
@@ -574,7 +581,7 @@ class Handler(BaseHTTPRequestHandler):
 
         if path == "/admin":
             if not user or user["role"] != "admin":
-                return json_response(self, 302, {"redirect": "/"})
+                return redirect_response(self, "/")
             conn = get_db()
             today = utc_today()
             total = conn.execute("SELECT COUNT(*) c FROM orders WHERE DATE(created_at)=DATE(?)", (today,)).fetchone()["c"]
@@ -621,23 +628,9 @@ class Handler(BaseHTTPRequestHandler):
                 return json_response(self, 400, {"error": "Invalid role"})
             if not body.get("email") or not body.get("password"):
                 return json_response(self, 400, {"error": "email and password required"})
-            conn = get_db()
-            try:
-                conn.execute(
-                    "INSERT INTO profiles (email,password,role,is_complete,is_approved,created_at) VALUES (?,?,?,?,?,?)",
-                    (body["email"], body["password"], role, 0, 0 if role == "operator" else 1, now_iso()),
-                )
-                conn.commit()
-            except sqlite3.IntegrityError:
-                # If profile missing row occurred externally, ensure it exists with requested role.
-                existing = conn.execute("SELECT id,email,role,is_approved FROM profiles WHERE email=?", (body["email"],)).fetchone()
-                if not existing:
-                    conn.close()
-                    return json_response(self, 500, {"error": "Unable to create profile"})
-                conn.close()
-                return json_response(self, 409, {"error": "Email already exists"})
-
             profile = ensure_profile_row(body["email"], body["password"], role)
+            if profile["role"] != role:
+                return json_response(self, 409, {"error": "Email already exists"})
             if role == "operator":
                 conn2 = get_db()
                 conn2.execute(

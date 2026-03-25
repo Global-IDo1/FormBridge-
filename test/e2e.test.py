@@ -81,6 +81,17 @@ def client():
     return opener
 
 
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def client_no_redirect():
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar), NoRedirect())
+    return opener
+
+
 def post(opener, path, data):
     req = urllib.request.Request(
         BASE + path,
@@ -137,6 +148,10 @@ try:
     st, order = post(student, "/api/orders/create", {"exam_id": 1, "cashfree_order_id": cf_order})
     assert st == 200
     oid = order["order_id"]
+    assert order["redirect"] == f"/order/{oid}/confirm"
+
+    st, confirm_html = get(student, order["redirect"])
+    assert "Order Confirmed" in confirm_html
 
     st, tr = get(client(), f"/api/track/{oid}")
     assert tr["status"] == "RECEIVED" and tr["status_text"] == "Finding operator"
@@ -159,6 +174,8 @@ try:
     op_id = [x["id"] for x in ops["operators"] if x["email"] == "operator@test.com"][0]
     st, _ = post(admin, f"/admin/operators/{op_id}/approve", {})
     assert st == 200
+    st, admin_dash = get(admin, "/admin")
+    assert "total_orders_today" in admin_dash
 
     st, payment2 = post(student, "/api/payments/cashfree/create", {"exam_id": 1, "amount": 49})
     post(student, "/api/payments/cashfree/verify", {"cashfree_order_id": payment2["cashfree_order_id"]})
@@ -168,6 +185,10 @@ try:
     st, tr2 = get(client(), f"/api/track/{oid2}")
     assert tr2["status"] == "ASSIGNED"
     assert any(row["status"] == "ASSIGNED" for row in tr2["timeline"])
+    st, admin_orders = get(admin, "/admin/orders")
+    assert any(o["id"] == oid2 for o in admin_orders["orders"])
+    st, admin_exams = get(admin, "/admin/exams")
+    assert len(admin_exams["exams"]) >= 1
 
     st, asg = get(operator, "/operator")
     assert asg["assignments"] and asg["assignments"][0]["id"] == oid2
@@ -206,11 +227,13 @@ try:
         assert exc.code == 403
 
     # admin-only route protection
+    student_no_redir = client_no_redirect()
+    post(student_no_redir, "/api/login", {"email": "student@test.com", "password": "pass"})
     try:
-        get(student, "/admin")
+        get(student_no_redir, "/admin")
         raise AssertionError("student must not access admin")
-    except urllib.error.HTTPError:
-        pass
+    except urllib.error.HTTPError as exc:
+        assert exc.code == 302
 
     print("E2E workflow checks passed")
 finally:
