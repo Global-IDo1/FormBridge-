@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FormBridge — Government Exam Form Filling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="navbar sticky">
+      <div class="container nav-inner">
+        <div class="logo">FormBridge</div>
+        <button class="hamburger" aria-label="Open menu">☰</button>
+        <nav class="nav-links">
+          <a class="btn btn-secondary" href="#auth">Login</a>
+          <a class="btn btn-primary" href="#open-exams">Apply Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="landing">
+        <div class="container hero-content">
+          <h1>Get Your Government Exam Form Filled by Verified Experts</h1>
+          <p>
+            SSC, Railway, and State PSC forms filled within 3 working days. Starting
+            at ₹49 only.
+          </p>
+          <div class="hero-actions">
+            <a href="#open-exams" class="btn btn-primary">Apply Now</a>
+            <a href="#tracking" class="btn btn-secondary">Track Your Order</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works">
+        <div class="container">
+          <h2>How it works</h2>
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-number">1</div>
+              <h3>Create Profile</h3>
+              <p>Complete your details once and securely upload documents.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-number">2</div>
+              <h3>Select Exam</h3>
+              <p>Choose an active exam and confirm your application request.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-number">3</div>
+              <h3>Expert Submission</h3>
+              <p>A verified operator submits and you track every status update.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-bar">
+        <div class="container trust-items">
+          <div><span class="trust-icon">✓</span> Verified Operators</div>
+          <div><span class="trust-icon">24h</span> 3-Day Guarantee</div>
+          <div><span class="trust-icon">SEC</span> Secure Data</div>
+          <div><span class="trust-icon">₹</span> ₹49 Only</div>
+        </div>
+      </section>
+
+      <section class="dashboard-preview" id="open-exams">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Welcome back, Rohan Sharma</h2>
+            <p>Tuesday, March 24, 2026</p>
+          </div>
+
+          <div class="stats-grid three">
+            <article class="card stat-card"><h3>Applications</h3><p>12</p></article>
+            <article class="card stat-card"><h3>Pending</h3><p>4</p></article>
+            <article class="card stat-card"><h3>Completed</h3><p>8</p></article>
+          </div>
+
+          <div class="section-heading compact">
+            <h3>Open Exams</h3>
+            <p>Select an exam to apply</p>
+          </div>
+
+          <div class="exam-grid">
+            <article class="card exam-card">
+              <div class="exam-stripe"></div>
+              <span class="badge badge-danger">Closing Soon</span>
+              <h4>SSC CGL</h4>
+              <p class="muted">Combined Graduate Level Examination 2026</p>
+              <p class="meta">Last Date: April 3, 2026</p>
+              <p class="meta">Govt Fee: ₹100 | Our Fee: ₹49</p>
+              <button class="btn btn-primary full">Apply Now</button>
+            </article>
+            <article class="card exam-card">
+              <div class="exam-stripe"></div>
+              <h4>RRB NTPC</h4>
+              <p class="muted">Railway Recruitment Board NTPC 2026</p>
+              <p class="meta">Last Date: April 18, 2026</p>
+              <p class="meta">Govt Fee: ₹500 | Our Fee: ₹49</p>
+              <button class="btn btn-primary full">Apply Now</button>
+            </article>
+          </div>
+
+          <div class="section-heading compact"><h3>My Applications</h3></div>
+          <div class="table-wrap card">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Exam</th>
+                  <th>Status</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>FB-2026-1021</td>
+                  <td>SSC CGL</td>
+                  <td><span class="pill received">RECEIVED</span></td>
+                  <td>Mar 23, 2026</td>
+                </tr>
+                <tr>
+                  <td>FB-2026-0998</td>
+                  <td>RRB ALP</td>
+                  <td><span class="pill assigned">ASSIGNED</span></td>
+                  <td>Mar 21, 2026</td>
+                </tr>
+                <tr>
+                  <td>FB-2026-0902</td>
+                  <td>UPPSC PCS</td>
+                  <td><span class="pill completed">COMPLETED</span></td>
+                  <td>Mar 18, 2026</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="auth" id="auth">
+        <div class="container">
+          <div class="card auth-card">
+            <div class="tabs">
+              <button class="tab active">Sign In</button>
+              <button class="tab">Create Account</button>
+            </div>
+            <form class="form-grid">
+              <label>Email Address<input type="email" placeholder="you@example.com" /></label>
+              <label>Password<input type="password" placeholder="Enter password" /></label>
+              <button type="button" class="btn btn-primary full">Continue</button>
+            </form>
+            <hr />
+            <div class="auth-footer-links">
+              <a href="#">Forgot password?</a>
+              <a href="#">Need help?</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile-setup">
+        <div class="container">
+          <h2>Profile Setup</h2>
+          <div class="progress-row">
+            <div class="progress-step done"><span>✓</span><p>Personal</p></div>
+            <div class="line done"></div>
+            <div class="progress-step current"><span>2</span><p>Education</p></div>
+            <div class="line"></div>
+            <div class="progress-step"><span>3</span><p>Documents</p></div>
+          </div>
+          <div class="card">
+            <h3>Education Details</h3>
+            <div class="form-grid two-cols">
+              <label>Highest Qualification<input type="text" placeholder="Bachelor's Degree" /></label>
+              <label>Passing Year<input type="text" placeholder="2024" /></label>
+              <label>Category
+                <select>
+                  <option>General</option>
+                  <option>OBC</option>
+                  <option>SC</option>
+                  <option>ST</option>
+                </select>
+              </label>
+              <label>State<input type="text" placeholder="Uttar Pradesh" /></label>
+            </div>
+            <h4>Upload Documents</h4>
+            <div class="upload-grid">
+              <div class="upload-box">Upload Aadhaar (PDF/JPG)<br /><small>Max size: 2MB</small></div>
+              <div class="upload-box success">Graduation Certificate.pdf (1.2MB) ✓</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tracking" id="tracking">
+        <div class="container">
+          <h2>Order #FB-2025-4821</h2>
+          <div class="tracker">
+            <div class="track-step done"><strong>Received</strong><small>09:20 AM</small></div>
+            <div class="track-step done"><strong>Assigned</strong><small>10:45 AM</small></div>
+            <div class="track-step active"><strong>In Progress</strong><small>01:10 PM</small></div>
+            <div class="track-step"><strong>Submitted</strong><small>Pending</small></div>
+            <div class="track-step"><strong>Completed</strong><small>Pending</small></div>
+          </div>
+          <div class="card success-banner">
+            <h3>Application Submitted Successfully</h3>
+            <p>Application No: SSC-2026-778231</p>
+            <button class="btn btn-primary">Download Proof</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="operator">
+        <div class="container operator-shell">
+          <aside class="operator-sidebar card">
+            <div class="logo">FormBridge</div>
+            <a class="active" href="#">Dashboard</a>
+            <a href="#">My Assignment</a>
+            <a href="#">History</a>
+            <a href="#">My Stats</a>
+          </aside>
+          <div class="operator-main">
+            <div class="stats-grid four">
+              <article class="card stat-card"><h3>Total</h3><p>56</p></article>
+              <article class="card stat-card"><h3>Today</h3><p>9</p></article>
+              <article class="card stat-card"><h3>Pending</h3><p>6</p></article>
+              <article class="card stat-card"><h3>Completed</h3><p>41</p></article>
+            </div>
+            <article class="card assignment-highlight">
+              <h3>Current Assignment: FB-2026-1021</h3>
+              <p>SSC CGL 2026 submission due today.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="operator-fill">
+        <div class="container fill-layout">
+          <div class="student-panel card">
+            <h3>Student Data</h3>
+            <div class="data-field"><span>FULL NAME</span><div><strong>ROHAN SHARMA</strong><button class="icon-btn">Copy</button></div></div>
+            <div class="data-field"><span>MOBILE</span><div><strong>+91 9876543210</strong><button class="icon-btn">Copy</button></div></div>
+            <div class="data-field"><span>EMAIL</span><div><strong>rohan@email.com</strong><button class="icon-btn">Copy</button></div></div>
+            <div class="data-field"><span>DOB</span><div><strong>15/08/2002</strong><button class="icon-btn">Copy</button></div></div>
+            <h4>Documents</h4>
+            <div class="doc-thumbs">
+              <div>Photo.jpg</div>
+              <div>Aadhaar.pdf</div>
+            </div>
+          </div>
+          <div class="task-panel card">
+            <h3>Task Panel</h3>
+            <ol>
+              <li>Open official portal and log in.</li>
+              <li>Copy verified student details into form fields.</li>
+              <li>Upload required documents and submit.</li>
+            </ol>
+            <button class="btn btn-secondary full">Open Official Form</button>
+            <label>Application Number
+              <input type="text" placeholder="Enter official application number" />
+            </label>
+            <label>Upload Submission Proof
+              <input type="file" />
+            </label>
+            <button class="btn btn-primary full" disabled>Mark as Submitted</button>
+          </div>
+        </div>
+      </section>
+
+      <nav class="mobile-bottom-nav">
+        <a href="#">Home</a>
+        <a href="#">Apply</a>
+        <a href="#">My Orders</a>
+        <a href="#">Profile</a>
+      </nav>
+    </main>
+
+    <footer>
+      <div class="container">© 2026 FormBridge. Secure, assisted government exam applications.</div>
+    </footer>
+  </body>
+</html>
